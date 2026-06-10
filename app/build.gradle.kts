@@ -1,5 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -29,9 +31,18 @@ android {
             )
         }
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = "11"
     }
 }
 
@@ -44,4 +55,14 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    // Room runtime and coroutine extensions
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    // Process Room annotations with KSP
+    ksp(libs.room.compiler)
+    implementation(libs.androidx.lifecycle.viewmodel)
+    // For Activities
+    implementation(libs.androidx.activity.ktx.v193)
+    // For Jetpack Compose (if applicable)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
 }
