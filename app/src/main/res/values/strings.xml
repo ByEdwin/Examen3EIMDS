@@ -6,4 +6,6 @@
     <string name="login_button">Iniciar sesión</string>
     <string name="no_account_text">¿No tienes cuenta?</string>
     <string name="register_button">Registrar</string>
+    <string name="signup_title">Crear Cuenta</string>
+    <string name="register_action">Registrarse</string>
 </resources>
