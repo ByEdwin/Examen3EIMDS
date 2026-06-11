@@ -8,4 +8,6 @@
     <string name="register_button">Registrar</string>
     <string name="signup_title">Crear Cuenta</string>
     <string name="register_action">Registrarse</string>
+    <string name="player_label">Jugador</string>
+    <string name="last_connection_label">Ultima conexión:</string>
 </resources>
