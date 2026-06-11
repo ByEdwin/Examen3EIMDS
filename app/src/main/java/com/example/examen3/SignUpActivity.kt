@@ -36,10 +36,15 @@ class SignUpActivity : AppCompatActivity() {
 
             if (username.isNotEmpty() && password.isNotEmpty()) {
                 lifecycleScope.launch {
-                    val user = User(username = username, password = password)
-                    db.userDao().insert(user)
-                    Toast.makeText(this@SignUpActivity, "Usuario registrado", Toast.LENGTH_SHORT).show()
-                    finish()
+                    val existingUser = db.userDao().getUserByUsername(username)
+                    if (existingUser != null) {
+                        Toast.makeText(this@SignUpActivity, "El usuario ya existe", Toast.LENGTH_SHORT).show()
+                    } else {
+                        val user = User(username = username, password = password)
+                        db.userDao().insert(user)
+                        Toast.makeText(this@SignUpActivity, "Usuario registrado", Toast.LENGTH_SHORT).show()
+                        finish()
+                    }
                 }
             } else {
                 Toast.makeText(this, "Por favor complete todos los campos", Toast.LENGTH_SHORT).show()
