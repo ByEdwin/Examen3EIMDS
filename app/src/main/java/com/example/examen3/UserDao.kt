@@ -14,4 +14,7 @@ interface UserDao {
 
     @Query("UPDATE users SET lastConnection = :lastConnection WHERE id = :userId")
     suspend fun updateLastConnection(userId: Int, lastConnection: String)
+
+    @Query("SELECT COUNT(*) FROM users")
+    suspend fun getUserCount(): Int
 }

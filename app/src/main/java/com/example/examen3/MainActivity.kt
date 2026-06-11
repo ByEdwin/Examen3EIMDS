@@ -52,8 +52,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnRegister.setOnClickListener {
-            val intent = Intent(this, SignUpActivity::class.java)
-            startActivity(intent)
+            lifecycleScope.launch {
+                val userCount = db.userDao().getUserCount()
+                if (userCount > 0) {
+                    Toast.makeText(this@MainActivity, "Ya existe un usuario registrado", Toast.LENGTH_SHORT).show()
+                } else {
+                    val intent = Intent(this@MainActivity, SignUpActivity::class.java)
+                    startActivity(intent)
+                }
+            }
         }
     }
 }
