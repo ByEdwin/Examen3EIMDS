@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
                     val user = db.userDao().getUserByUsername(username)
                     if (user != null && user.password == password) {
                         val intent = Intent(this@MainActivity, ProfileActivity::class.java)
+                        intent.putExtra("USERNAME", username)
                         startActivity(intent)
                     } else {
                         Toast.makeText(this@MainActivity, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
